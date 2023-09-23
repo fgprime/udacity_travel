@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Test</title>
+</head>
+
+<body>
+  <!-- <header> -->
+  <!--   <div class="">Logo</div> -->
+  <!--   <div class="">navigation</div> -->
+  <!-- </header> -->
+
+  <main>
+    <h1>Travel Planner</h1>
+    <div id="tripsHeadline">
+      <h3>My Trips:</h3>
+      <button id="addTrip">✚ add trip</button>
+    </div>
+    <section id="trips">
+      <div>
+        <img src="" />
+        <h2>My trip to: Paris,France</h2>
+        <h2>Departing: 02/12/2020</h2>
+        <button>save trip</button>
+        <button>remove trip</button>
+        <p>Paris, Frane is 220 days away</p>
+        <div>
+          <p>Typical weather for then is:</p>
+          High - 46, Low - 35 Mostly cloudy throughout the day.
+        </div>
+      </div>
+
+      <!--       <form class="" onsubmit="return Client.handleSubmit(event)"> -->
+      <!--         <label for="text">Text to analyse</label> -->
+      <!--         <textarea id="text" name="text" rows="" cols=""> -->
+      <!-- As we now know that we cant buy happiness with money and there is no other shortcut to happiness. It is something that you feel from within. In addition, true happiness comes from within yourself. Happiness is basically a state of mind. Moreover, it can only be achieved by being positive and avoiding any negative thought in mind. And if we look at the bright side of ourselves only then we can be happy. -->
+      <!--         </textarea> -->
+      <!--         <!-- <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name"> -->
+      <!--         <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" -->
+      <!--           onsubmit="return handleSubmit(event)"> -->
+      <!--       </form> -->
+    </section>
+
+    <section id="tripInput">
+      <div class="inputContainer">
+        <label for="location"> My trip to: </label>
+
+        <input id="location" name="location" type="text" placeholder="Enter your location" />
+      </div>
+      <div class="inputContainer">
+        <label for="date">Departing:</label>
+        <input onfocus="(this.type='date')" id="date" name="date" placeholder="DD/MM/YYYY" />
+      </div>
+
+      <div>
+        <button onclick="return Client.createTripHandler(event);">
+          save trip
+        </button>
+        <button>remove trip</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- <footer> -->
+  <!--   <p>This is a footer</p> -->
+  <!-- </footer> -->
+
+  <!-- <script> -->
+  <!--   // Check that service workers are supported -->
+  <!--   // Code from https://webpack.js.org/guides/progressive-web-application/ -->
+  <!--   if ('serviceWorker' in navigator) { -->
+  <!--    window.addEventListener('load', () => { -->
+  <!--      navigator.serviceWorker.register('/service-worker.js').then(registration => { -->
+  <!--        console.log('SW registered: ', registration); -->
+  <!--      }).catch(registrationError => { -->
+  <!--        console.log('SW registration failed: ', registrationError); -->
+  <!--      }); -->
+  <!--    }); -->
+  <!--   } -->
+  <!-- </script> -->
+</body>
+
+</html>
