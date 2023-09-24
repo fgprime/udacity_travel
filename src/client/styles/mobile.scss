@@ -2,7 +2,7 @@ body {
   font-family: "Work Sans";
   font-size: 12px;
   color: #fff;
-  margin: 0;
+  margin: 10px;
   background-color: #000;
   display: grid;
 }
@@ -25,6 +25,8 @@ div#tripsHeadline {
   display: flex;
   justify-content: space-between;
   background: #444;
+  padding: 10px;
+  margin: 0 10px 0 10px;
 
   #addTrip {
     font-family: Arial, Helvetica, sans-serif;
@@ -33,6 +35,20 @@ div#tripsHeadline {
     background: white;
     border-radius: 32px;
   }
+}
+
+.trip {
+  display: flex;
+  flex-direction: row;
+  img {
+    width: 30%;
+    margin: 0 20px 0 0;
+  }
+
+  margin: 0 10px 0 10px;
+  padding: 10px;
+  background: #b66;
+  margin: 10px 0 10px 0;
 }
 
 section#tripInput {
@@ -67,5 +83,5 @@ section#tripInput {
 }
 
 section#trips {
-  background: #faa;
+  margin: 0 10px 0 10px;
 }
