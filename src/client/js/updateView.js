@@ -1,8 +1,28 @@
 import { createTrip, removeTrip } from "./fetchData";
 
-function updateView(trips) {
-  console.log("Update view");
+function addTripEvent() {
+  const location = document.getElementById("location")?.value;
+  const dateInputValue = document.getElementById("date")?.value;
 
+  const date = new Date(dateInputValue);
+  const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+
+  if (
+    !(location?.length > 0 && dateInputValue?.length > 0 && date > yesterday)
+  ) {
+    alert("Please insert valid information for the trip");
+    return;
+  }
+
+  const trip = {
+    location,
+    date,
+  };
+
+  Client.createTrip(trip);
+}
+
+function updateView(trips) {
   const root = document.getElementById("trips");
   root.innerHTML = "";
 
@@ -64,28 +84,6 @@ function createTripView(index, trip) {
   const root = document.getElementById("trips");
 
   root.appendChild(container);
-}
-
-function addTripEvent() {
-  const location = document.getElementById("location")?.value;
-  const dateInputValue = document.getElementById("date")?.value;
-
-  const date = new Date(dateInputValue);
-  const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-
-  if (
-    !(location?.length > 0 && dateInputValue?.length > 0 && date >= yesterday)
-  ) {
-    alert("Please insert valid information for the trip");
-    return;
-  }
-
-  const trip = {
-    location,
-    date,
-  };
-
-  Client.createTrip(trip);
 }
 
 export { updateView, addTripEvent };
