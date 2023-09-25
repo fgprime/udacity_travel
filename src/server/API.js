@@ -17,8 +17,6 @@ console.log(`Your Pixabay API key is ${pixabayApiKey}`);
 async function getLocation(location) {
   let queries = [];
 
-  console.dir(location);
-
   queries.push(`placename=${location}`);
   // Remove country to be selectable in frontend
   // queries.push(`country=DE`);
@@ -29,12 +27,9 @@ async function getLocation(location) {
   const query = queries.join("&");
   const url = `${geonamesService}?${query}`;
 
-  console.dir(url);
   const response = await fetch(url, {});
   try {
     const data = await response.json();
-
-    // console.dir(data);
 
     return data;
   } catch (error) {
@@ -43,7 +38,6 @@ async function getLocation(location) {
 }
 
 async function getWeather(lat, lng, country, date) {
-  console.dir(date);
   const MILLISECONDS_IN_SECOND = 1000;
   const SECONDS_IN_MINUTE = 60;
   const MINUTES_IN_HOUR = 60;
@@ -57,10 +51,6 @@ async function getWeather(lat, lng, country, date) {
     MILLISECONDS_IN_SECOND;
 
   const formatedEndDate = new Date(endDate).toISOString().slice(0, 10);
-
-  console.dir(date);
-  console.dir(endDate);
-  console.dir(formatedEndDate);
 
   let queryParameter = {
     lat: lat,
@@ -78,13 +68,10 @@ async function getWeather(lat, lng, country, date) {
     queryParameter,
   ).toString()}`;
 
-  console.dir(url);
-
   const response = await fetch(url, {});
+
   try {
     const data = await response.json();
-
-    console.dir(data);
 
     return data;
   } catch (error) {
@@ -106,13 +93,10 @@ async function getImages(location) {
     queryParameter,
   ).toString()}`;
 
-  console.dir(url);
-
   const response = await fetch(url, {});
+
   try {
     const data = await response.json();
-
-    console.dir(data);
 
     if (data?.hits?.length > 0) {
       return data.hits[0];

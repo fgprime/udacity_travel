@@ -4,17 +4,12 @@ var bodyParser = require("body-parser");
 const { getLocation, getWeather, getImages } = require("./API.js");
 var cors = require("cors");
 
-// var json = {
-//   title: "test json response",
-//   message: "this is a message",
-//   time: "now",
-// };
-
 const app = express();
-// app.use(cors({ origin: "*" }));
 app.use(cors());
+
 // to use json
 app.use(bodyParser.json());
+
 // to use url encoded values
 app.use(
   bodyParser.urlencoded({
