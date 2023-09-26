@@ -6,7 +6,7 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 const { GenerateSW } = require("workbox-webpack-plugin");
 
 module.exports = {
-  entry: "./src/client/index.js",
+  entry: "./src/client/js/index.js",
   output: {
     libraryTarget: "var",
     library: "Client",
