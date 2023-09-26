@@ -23,6 +23,12 @@ module.exports = {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
+
+      {
+        test: /\.svg$/,
+        loader: "file-loader",
+        options: { outputPath: "media", name: "[name].[ext]" },
+      },
     ],
   },
   plugins: [
@@ -34,4 +40,7 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: "[name].css" }),
     new GenerateSW({}),
   ],
+  output: {
+    clean: true,
+  },
 };
