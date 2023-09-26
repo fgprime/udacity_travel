@@ -1,4 +1,4 @@
-import { createTrip, removeTrip } from "./fetchData";
+// import { createTrip, removeTrip } from "./fetchData";
 
 function addTripEvent() {
   const location = document.getElementById("location")?.value;

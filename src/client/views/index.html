@@ -17,7 +17,7 @@
     <h1>Travel Planner</h1>
     <div id="tripsHeadline">
       <h3>My Trips:</h3>
-      <button id="addTrip">✚ add trip</button>
+      <!-- <button id="addTrip">✚ add trip</button> -->
     </div>
     <section id="trips"></section>
 
@@ -35,9 +35,7 @@
       </div>
 
       <div>
-        <button onclick="return Client.addTripEvent(event);">
-          save trip
-        </button>
+        <button id="saveTrip">save trip</button>
         <!-- <button>remove trip</button> -->
       </div>
     </section>
@@ -64,6 +62,11 @@
     }
   </script>
   <script>
+    window.addEventListener("load", () => {
+      const saveTripButton = document.getElementById("saveTrip");
+      saveTripButton.addEventListener("click", Client.addTripEvent);
+    });
+
     window.setTimeout(() => {
       Client.addTripEvent();
     }, 1000);
