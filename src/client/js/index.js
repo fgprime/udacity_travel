@@ -3,4 +3,6 @@ import { updateView, addTripEvent } from "./updateView";
 
 import "../styles/style.scss";
 
+import img from "../media/noimage.svg";
+
 export { addTripEvent, updateView, createTrip, removeTrip };

@@ -95,13 +95,16 @@ async function getImages(location) {
 
   const response = await fetch(url, {});
 
+  console.dir(response);
   try {
     const data = await response.json();
+
+    console.dir(data);
 
     if (data?.hits?.length > 0) {
       return data.hits[0];
     } else {
-      return {};
+      return { largeImageURL: "media/noimage.svg" };
     }
   } catch (error) {
     console.log("Error", error);
