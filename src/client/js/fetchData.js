@@ -1,6 +1,10 @@
-import { fetchLocation, fetchWeather, fetchImage } from "./api";
-
-let trips = [];
+import {
+  fetchLocation,
+  fetchWeather,
+  fetchImage,
+  updateTripAPI,
+  removeTripAPI,
+} from "./api";
 
 async function createTrip(trip) {
   let enrichedTrip = {};
@@ -12,16 +16,19 @@ async function createTrip(trip) {
     return;
   }
 
-  trips.push(enrichedTrip);
+  const response = await updateTripAPI(enrichedTrip);
+
+  const trips = await response.json();
 
   Client.updateView(trips);
 }
 
-function removeTrip(event) {
+async function removeTrip(event) {
   const element = event.target;
-  const id = Number(element.dataset.id);
+  const id = element.dataset.id;
 
-  trips.splice(id, 1);
+  const response = await removeTripAPI(id);
+  const trips = await response.json();
 
   Client.updateView(trips);
 }

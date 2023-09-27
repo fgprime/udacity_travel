@@ -1,7 +1,8 @@
 import { createTrip, removeTrip } from "./fetchData";
 import { updateView, addTripEvent } from "./updateView";
 
-import { } from "./addTripEvent";
+import {} from "./addTripEvent";
+import {} from "./initWithData";
 
 import "../styles/style.scss";
 

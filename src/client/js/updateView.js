@@ -1,5 +1,3 @@
-// import { createTrip, removeTrip } from "./fetchData";
-
 function addTripEvent() {
   const location = document.getElementById("location")?.value;
   const dateInputValue = document.getElementById("date")?.value;
@@ -26,6 +24,8 @@ function updateView(trips) {
   const root = document.getElementById("trips");
   root.innerHTML = "";
 
+  console.dir(trips);
+
   for (const [index, trip] of trips.entries()) {
     createTripView(index, trip);
   }
@@ -45,12 +45,14 @@ function createTripView(index, trip) {
   headline.textContent = `My trip to: ${trip.location}`;
 
   const departure = document.createElement("h2");
-  const date = new Intl.DateTimeFormat("de-DE").format(trip.date);
+
+  console.dir(trip.date);
+  const date = new Intl.DateTimeFormat("de-DE").format(new Date(trip.date));
   departure.textContent = `Departing: ${date}`;
 
   const removeButton = document.createElement("button");
   removeButton.textContent = "remove trip";
-  removeButton.dataset.id = `${index}`;
+  removeButton.dataset.id = `${trip.id}`;
   removeButton.addEventListener("click", (event) => {
     Client.removeTrip(event);
   });
@@ -61,10 +63,10 @@ function createTripView(index, trip) {
   const HOURS_IN_DAY = 24;
   const dateDifference = Math.floor(
     (new Date(trip.date) - new Date()) /
-    (HOURS_IN_DAY *
-      MINUTES_IN_HOUR *
-      SECONDS_IN_MINUTE *
-      MILLISECONDS_IN_SECOND),
+      (HOURS_IN_DAY *
+        MINUTES_IN_HOUR *
+        SECONDS_IN_MINUTE *
+        MILLISECONDS_IN_SECOND),
   );
   const countdown = document.createElement("p");
 

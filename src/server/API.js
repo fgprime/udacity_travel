@@ -2,10 +2,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-const geonamesUsername = process.env.GEONAMES_USERNAME;
-const geonamesService = "http://api.geonames.org/postalCodeLookupJSON";
-console.log(`Your Geonames API username is ${geonamesUsername}`);
-
 const weatherbitApiKey = process.env.WEATHERBIT_APIKEY;
 const weatherbitService = "https://api.weatherbit.io/v2.0/forecast/daily?";
 console.log(`Your Weatherbit API key is ${weatherbitApiKey}`);
@@ -13,29 +9,6 @@ console.log(`Your Weatherbit API key is ${weatherbitApiKey}`);
 const pixabayApiKey = process.env.PIXABAY_APIKEY;
 const pixabayService = "https://pixabay.com/api/?";
 console.log(`Your Pixabay API key is ${pixabayApiKey}`);
-
-async function getLocation(location) {
-  let queries = [];
-
-  queries.push(`placename=${location}`);
-  // Remove country to be selectable in frontend
-  // queries.push(`country=DE`);
-  queries.push(`username=${geonamesUsername}`);
-
-  // queries.push(`txt=${encodeURIComponent(text)}`);
-
-  const query = queries.join("&");
-  const url = `${geonamesService}?${query}`;
-
-  const response = await fetch(url, {});
-  try {
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log("Error", error);
-  }
-}
 
 async function getWeather(lat, lng, country, date) {
   const MILLISECONDS_IN_SECOND = 1000;
@@ -45,10 +18,10 @@ async function getWeather(lat, lng, country, date) {
   const endDate =
     new Date(date).getTime() +
     1 *
-    HOURS_IN_DAY *
-    MINUTES_IN_HOUR *
-    SECONDS_IN_MINUTE *
-    MILLISECONDS_IN_SECOND;
+      HOURS_IN_DAY *
+      MINUTES_IN_HOUR *
+      SECONDS_IN_MINUTE *
+      MILLISECONDS_IN_SECOND;
 
   const formatedEndDate = new Date(endDate).toISOString().slice(0, 10);
 
@@ -95,11 +68,8 @@ async function getImages(location) {
 
   const response = await fetch(url, {});
 
-  console.dir(response);
   try {
     const data = await response.json();
-
-    console.dir(data);
 
     if (data?.hits?.length > 0) {
       return data.hits[0];
@@ -111,4 +81,4 @@ async function getImages(location) {
   }
 }
 
-module.exports = { getLocation, getWeather, getImages };
+module.exports = { getWeather, getImages };
