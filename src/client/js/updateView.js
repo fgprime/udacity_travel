@@ -1,3 +1,5 @@
+import { createTrip, removeTrip } from "./fetchData";
+
 function addTripEvent() {
   const location = document.getElementById("location")?.value;
   const dateInputValue = document.getElementById("date")?.value;
@@ -17,14 +19,12 @@ function addTripEvent() {
     date,
   };
 
-  Client.createTrip(trip);
+  createTrip(trip);
 }
 
 function updateView(trips) {
   const root = document.getElementById("trips");
   root.innerHTML = "";
-
-  console.dir(trips);
 
   for (const [index, trip] of trips.entries()) {
     createTripView(index, trip);
@@ -46,7 +46,6 @@ function createTripView(index, trip) {
 
   const departure = document.createElement("h2");
 
-  console.dir(trip.date);
   const date = new Intl.DateTimeFormat("de-DE").format(new Date(trip.date));
   departure.textContent = `Departing: ${date}`;
 
@@ -54,7 +53,7 @@ function createTripView(index, trip) {
   removeButton.textContent = "remove trip";
   removeButton.dataset.id = `${trip.id}`;
   removeButton.addEventListener("click", (event) => {
-    Client.removeTrip(event);
+    removeTrip(event);
   });
 
   const MILLISECONDS_IN_SECOND = 1000;

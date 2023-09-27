@@ -5,6 +5,7 @@ import {
   updateTripAPI,
   removeTripAPI,
 } from "./api";
+import { updateView } from "./updateView";
 
 async function createTrip(trip) {
   let enrichedTrip = {};
@@ -20,7 +21,7 @@ async function createTrip(trip) {
 
   const trips = await response.json();
 
-  Client.updateView(trips);
+  updateView(trips);
 }
 
 async function removeTrip(event) {
@@ -30,7 +31,7 @@ async function removeTrip(event) {
   const response = await removeTripAPI(id);
   const trips = await response.json();
 
-  Client.updateView(trips);
+  updateView(trips);
 }
 
 async function fetchContextData(trip) {
