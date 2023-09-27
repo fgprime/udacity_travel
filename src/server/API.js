@@ -1,84 +1,39 @@
-/* Global Variables */
-const dotenv = require("dotenv");
-dotenv.config();
+let userData = [
+  {
+    id: "5505938d-79bb-43b3-9914-d573dc470d90",
+    location: "Hamburg",
+    date: "2024-09-12T00:00:00.000Z",
+    lat: 53.5521285714286,
+    lng: 10.0004285714286,
+    country: "DE",
+    max_temp: 23.6,
+    min_temp: 11.7,
+    description: "Scattered clouds",
+    image:
+      "https://pixabay.com/get/g369c82aca01abd165f491c98a1f4b05387e7c7c743f0cbd4006444127bed0cacdf92ceffeec63ee41ee209be99457bfe9717209ebf6c99171066faef488c7eb2_1280.jpg",
+  },
+];
 
-const weatherbitApiKey = process.env.WEATHERBIT_APIKEY;
-const weatherbitService = "https://api.weatherbit.io/v2.0/forecast/daily?";
-console.log(`Your Weatherbit API key is ${weatherbitApiKey}`);
-
-const pixabayApiKey = process.env.PIXABAY_APIKEY;
-const pixabayService = "https://pixabay.com/api/?";
-console.log(`Your Pixabay API key is ${pixabayApiKey}`);
-
-async function getWeather(lat, lng, country, date) {
-  const MILLISECONDS_IN_SECOND = 1000;
-  const SECONDS_IN_MINUTE = 60;
-  const MINUTES_IN_HOUR = 60;
-  const HOURS_IN_DAY = 24;
-  const endDate =
-    new Date(date).getTime() +
-    1 *
-      HOURS_IN_DAY *
-      MINUTES_IN_HOUR *
-      SECONDS_IN_MINUTE *
-      MILLISECONDS_IN_SECOND;
-
-  const formatedEndDate = new Date(endDate).toISOString().slice(0, 10);
-
-  let queryParameter = {
-    lat: lat,
-    lon: lng,
-    country: country,
-    language: "en",
-    start_date: date,
-    end_date: formatedEndDate,
-    units: "M",
-    days: 1,
-    key: weatherbitApiKey,
-  };
-
-  const url = `${weatherbitService}${new URLSearchParams(
-    queryParameter,
-  ).toString()}`;
-
-  const response = await fetch(url, {});
-
-  try {
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log("Error", error);
-  }
+function getData() {
+  return userData;
 }
 
-async function getImages(location) {
-  let queryParameter = {
-    key: pixabayApiKey,
-    q: location,
-    image_type: "photo",
-    orientation: "horizontal",
-    safesearch: "true",
-    order: "popular",
+function updateData(data) {
+  const entry = {
+    id: crypto.randomUUID(),
+    ...data,
   };
+  userData.push(entry);
 
-  const url = `${pixabayService}${new URLSearchParams(
-    queryParameter,
-  ).toString()}`;
-
-  const response = await fetch(url, {});
-
-  try {
-    const data = await response.json();
-
-    if (data?.hits?.length > 0) {
-      return data.hits[0];
-    } else {
-      return { largeImageURL: "media/noimage.svg" };
-    }
-  } catch (error) {
-    console.log("Error", error);
-  }
+  return getData();
 }
 
-module.exports = { getWeather, getImages };
+function removeData(id) {
+  userData = userData.filter((element) => {
+    return element.id !== id;
+  });
+
+  return getData();
+}
+
+module.exports = { getData, updateData, removeData };
