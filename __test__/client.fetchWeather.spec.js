@@ -1,4 +1,4 @@
-import { getWeather } from "../src/server/API";
+import { fetchWeather } from "../src/client/js/api/fetchWeather";
 
 const input = {
   lat: "53.5521285714286",
@@ -66,21 +66,21 @@ global.fetch = jest.fn(() =>
   }),
 );
 
-describe("Testing the server functionality", () => {
-  test("Testing the getWeather() function", async () => {
-    expect(getWeather).toBeDefined();
+describe("Testing the client functionality", () => {
+  test("Testing the fetchWeather() function", async () => {
+    expect(fetchWeather).toBeDefined();
 
-    const result = await getWeather(
+    const result = await fetchWeather(
       input.lat,
       input.lng,
       input.country,
       input.date,
     );
 
-    expect(result).toHaveProperty("data");
-    expect(result?.data?.length).toBeGreaterThan(0);
-    expect(result.data[0]).toHaveProperty("max_temp");
-    expect(result.data[0]).toHaveProperty("min_temp");
-    expect(result.data[0]?.weather).toHaveProperty("description");
+    console.dir(result);
+
+    expect(result).toHaveProperty("max_temp");
+    expect(result).toHaveProperty("min_temp");
+    expect(result).toHaveProperty("description");
   });
 });
