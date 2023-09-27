@@ -1,11 +1,13 @@
+import { GEONAMES_USERNAME } from "./environment";
+const GEONAMES_SERVICE = "http://api.geonames.org/postalCodeLookupJSON?";
+
 async function fetchLocation(location) {
   const params = {
-    location: location,
+    placename: location,
+    username: GEONAMES_USERNAME,
   };
 
-  const url =
-    "http://localhost:8081/api/location?" +
-    new URLSearchParams(params).toString();
+  const url = `${GEONAMES_SERVICE}${new URLSearchParams(params).toString()}`;
 
   const response = await fetch(url);
   const locationDetails = await response.json();
